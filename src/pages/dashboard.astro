@@ -1,0 +1,213 @@
+---
+const user = {
+  vorname: 'Max',
+  nachname: 'Mustermann',
+  geburtsdatum: '01.01.1990',
+  geburtsort: 'Berlin',
+  nationalitaet: 'Deutsch',
+  muttersprache: 'Deutsch',
+  kinder: 2,
+  kundennummer: 4711,
+  warteschlange: 4708,
+  servicezeit: '10:35 Uhr',
+  datum: '19. Januar 2025',
+  anschrift: 'Musterstraße 123, 12345 Musterstadt',
+  servicefiliale: '567',
+  lastUpdate: '09:51 AM',
+};
+---
+
+<html>
+  <head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      /* Servicefiliale Info-Box */
+      .header-box {
+        margin: 20px auto;
+        padding: 15px;
+        border: 2px solid #000;
+        background-color: #ffeb3b;
+        border-radius: 4px;
+        text-align: center;
+        width: 50%;
+        box-sizing: border-box;
+        font-size: 20px;
+        font-weight: bold;
+        color: #000;
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px;
+      }
+      .user-details {
+        width: 60%;
+      }
+      .user-details p {
+        margin: 5px 0; /* Kleiner Abstand zwischen den Zeilen */
+      }
+      .photo-placeholder {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px dashed gray;
+        background-color: #f9f9f9;
+        text-align: center;
+        color: gray;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+      /* Neues großes Infofeld */
+      .info-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-size: 16px;
+      }
+      .info-box .info-text {
+        font-size: 18px;
+        font-weight: normal;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      .info-box .number {
+        font-size: 60px;
+        font-weight: bold;
+        color: #000;
+        margin: 0;
+      }
+      .info-box .status {
+        font-size: 16px;
+        font-weight: normal;
+        color: #666;
+        margin-top: 10px;
+      }
+      .info-box .last-update {
+        font-size: 12px;
+        font-weight: normal;
+        color: #999;
+        margin-top: 10px;
+      }
+      .additional-info-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #000;
+        background-color: #f2f2f2;
+        border-radius: 4px;
+        padding: 20px;
+        text-align: center;
+        color: #333;
+        font-weight: bold;
+        width: 70%;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .additional-info-box p {
+        margin: 10px 0;
+        font-size: 16px;
+      }
+      .additional-info-box .date {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      .additional-info-box .date svg {
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        fill: #333;
+      }
+      /* Werbebanner-Box */
+      .advertisement-box {
+        width: 70%;
+        height: 120px;
+        margin: 20px auto;
+        border: 2px solid #000; /* Schwarzer Rahmen */
+        background-color: #ffeb3b; /* Gelber Hintergrund */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        border-radius: 8px; /* Abgerundete Ecken */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten */
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header mit der Servicefiliale in einer Info-Box -->
+    <div class="header-box">
+      Servicefiliale {user.servicefiliale}
+    </div>
+
+    <div class="container">
+      <!-- Persönliche Daten -->
+      <div class="user-details">
+        <p>Vorname: {user.vorname}</p>
+        <p>Nachname: {user.nachname}</p>
+        <p>Geburtsdatum: {user.geburtsdatum}</p>
+        <p>Geburtsort: {user.geburtsort}</p>
+        <p>Nationalität: {user.nationalitaet}</p>
+        <p>Muttersprache: {user.muttersprache}</p>
+        <p>Kinder: {user.kinder}</p>
+        <p>Kundennummer: {user.kundennummer}</p> <!-- Kundennummer eingefügt -->
+      </div>
+
+      <!-- Kundenfoto-Platzhalter -->
+      <div class="photo-placeholder">
+        <p>Kundenfoto</p>
+      </div>
+    </div>
+
+    <!-- Neues großes Infofeld -->
+    <div class="info-box">
+      <div class="info-text">Kunde</div>
+      <div class="number">{user.warteschlange}</div>
+      <div class="status">in Bearbeitung</div>
+      <div class="last-update">Letztes Update: {user.lastUpdate}</div>
+    </div>
+
+    <!-- Box für Servicezeit, Datum und Anschrift -->
+    <div class="additional-info-box">
+      <p>Servicezeit ca.: {user.servicezeit}</p>
+      <div class="date">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+        </svg>
+        <span>{user.datum}</span>
+      </div>
+      <p>{user.anschrift}</p>
+    </div>
+
+    <!-- Werbung Platzhalter -->
+    <div class="advertisement-box">
+      Werbebanner
+    </div>
+  </body>
+</html>
