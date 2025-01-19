@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 
 interface LoginFormProps {}
@@ -9,7 +11,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     const password = (event.target as HTMLFormElement).password.value;
 
     if (username === 'Demo' && password === 'Demo') {
-      window.location.href = '/dashboard';
+      window.location.href = '/lineup/dashboard';
     } else {
       alert('Ungültige Zugangsdaten!');
     }
