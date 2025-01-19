@@ -5,12 +5,12 @@ import AstroPWA from '@vite-pwa/astro'
 
 export default defineConfig({
     site: 'https://csaaro.github.io',
-    base: 'lineup-demo',
+    base: 'lineup',
   integrations: [react(),
     AstroPWA({
         mode: 'development',
-        base: 'lineup-demo/',
-        scope: '/lineup-demo/',
+        base: 'lineup/',
+        scope: '/lineup/',
         includeAssets: ['favicon.svg'],
         registerType: 'autoUpdate',
         manifest: {
