@@ -1,7 +1,7 @@
 ---
 import { pwaInfo } from 'virtual:pwa-info';
+import PWAInstaller from '@/components/PWAInstaller.astro';
 import LoginForm from '../components/LoginForm';
-const { BASE_URL } = import.meta.env;
 ---
 
 <html>
@@ -9,19 +9,74 @@ const { BASE_URL } = import.meta.env;
     <title>Login</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<base href={BASE_URL} /> 
-	{pwaInfo?.webManifest?.linkTag && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+    {pwaInfo?.webManifest?.linkTag && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
     <script src="/src/pwa.ts"></script>
-</head>
-  <body>
-    <h1>Willkommen! Bitte melden Sie sich an</h1>
-    
-    <!-- Die React-Komponente für das Login-Formular -->
-	<LoginForm client:load />
 
-    <!-- Footer -->
-    <footer>
-      <p>© 2025</p>
-    </footer>
+    <style>
+      body {
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      }
+
+      .login-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 400px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        padding: 40px 30px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+      }
+
+      footer a {
+        color: #1e88e5;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Login-Bereich -->
+    <div class="login-wrapper">
+      <h1>Willkommen!</h1>
+      <p>Bitte melden Sie sich mit Ihrem Benutzernamen und Passwort an.</p>
+      <LoginForm client:load />
+    </div>
+
+    <PWAInstaller/>
   </body>
 </html>
