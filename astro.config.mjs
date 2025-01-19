@@ -9,8 +9,8 @@ export default defineConfig({
   integrations: [react(),
     AstroPWA({
         mode: 'development',
-        base: '/',
-        scope: '/',
+        base: '/lineup/',
+        scope: '/lineup/',
         includeAssets: ['favicon.svg'],
         registerType: 'autoUpdate',
         manifest: {
