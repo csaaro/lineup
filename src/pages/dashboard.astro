@@ -12,9 +12,12 @@ const user = {
   servicezeit: '10:35 Uhr',
   datum: '19. Januar 2025',
   anschrift: 'Musterstraße 123, 12345 Musterstadt',
-  servicefiliale: '567',
+  servicefiliale: 'BERLINER TAFEL e.V.',
   lastUpdate: '09:51 Uhr',
 };
+import { Image } from 'astro:assets';
+import qrcode from '../assets/qrcode.png'
+import foto from '../assets/foto.png'
 ---
 
 <html>
@@ -54,39 +57,45 @@ const user = {
 
       .user-section {
         display: flex;
-        width: 100%;
-        gap: 20px;
+  flex-direction: row;
+  justify-content: space-between; /* Details links, Foto rechts */
+  align-items: flex-start;
+  flex-wrap: wrap; /* Auf kleinen Bildschirmen stapeln */
+  gap: 20px;
+  width: 100%;
       }
 
-      .user-details {
-        flex: 2;
-        background-color: #fff;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        text-align: left;
-      }
 
-      .user-details p {
-        margin: 5px 0;
-        font-size: 14px;
-        color: #333;
-      }
+  .user-details {
+  flex: 1;
+  min-width: 60%; /* Sicherstellen, dass es Platz hat */
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left; /* Links ausgerichtet */
+}
+
+.user-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
 
       .photo-placeholder {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 2px dashed gray;
-        background-color: #f9f9f9;
-        text-align: center;
-        color: gray;
-        font-size: 14px;
-        height: 200px;
-        width: 200px;
-        border-radius: 8px;
+        flex: 0 0 150px; /* Feste Größe für das Foto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed gray;
+  background-color: #f9f9f9;
+  text-align: center;
+  color: gray;
+  font-size: 14px;
+  height: 150px;
+  width: 150px;
+  border-radius: 8px;
       }
 
       h2 {
@@ -99,14 +108,18 @@ const user = {
       .info-box,
 .my-info-box {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row; /* Vertikal anordnen für kleine Geräte */
   align-items: center;
+  justify-content: space-between; /* Platz zwischen den Elementen */
   width: 100%;
+  max-width: 500px; /* Maximale Breite der Info-Box */
+  margin: 0 auto; /* Zentriert die Box */
   padding: 20px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  gap: 10px; /* Abstand zwischen den Elementen */
 }
 
 /* Nummern (z.B. Warteschlange, Kundennummer) */
@@ -115,6 +128,7 @@ const user = {
   font-size: 28px;
   font-weight: bold;
   color: #1e88e5;
+  flex-shrink: 0; /* Nummer wird nicht verkleinert */
 }
 
 /* Details für beide Boxen */
@@ -122,38 +136,37 @@ const user = {
 .my-info-box .details {
   display: flex;
   flex-direction: column;
-  text-align: right;
+  align-items: flex-start; /* Links ausgerichtet */
+  justify-content: center; /* Inhalte vertikal ausrichten */
+  text-align: left;
+  font-size: 14px;
+  color: #444;
 }
 
 
-/* Status */
-.info-box .details .status,
-.my-info-box .details .status {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
+
 
 /* Letztes Update */
 .info-box .details .last-update,
 .my-info-box .details .last-update {
   font-size: 12px;
   color: #666;
+  margin-top: 5px;
 }
 
 /* Zusätzliche Informationen mit Kalender-Icon */
 .my-info-box .additional-info {
   display: flex;
   flex-direction: row; /* Icon und Textblock nebeneinander */
-  align-items: flex-start; /* Oben ausrichten */
-  gap: 1px; /* Abstand zwischen Icon und Text */
+  align-items: center; /* Oben ausrichten */
+  gap: 5px; /* Abstand zwischen Icon und Text */
   width: 100%; /* Box nutzt die gesamte Breite */
 }
 
 /* Kalender-Icon */
 .my-info-box .calendar-icon {
-  width: 40px; /* Angepasste Icon-Größe */
-  height: 40px;
+  width: 30px; /* Angepasste Icon-Größe */
+  height: 30px;
   flex-shrink: 0; /* Verhindert, dass das Icon schrumpft */
 }
 
@@ -166,11 +179,9 @@ const user = {
 .my-info-box .date-content {
   display: flex;
   flex-direction: column; /* Servicezeit und Datum untereinander */
-  align-items: flex-end; /* Rechtsbündige Ausrichtung */
-  text-align: right; /* Text bleibt rechtsbündig */
+  text-align: left; /* Text bleibt rechtsbündig */
   font-size: 14px;
   color: #444;
-  flex-grow: 1; /* Textblock nimmt den verbleibenden Platz ein */
 }
 
 
@@ -201,31 +212,124 @@ const user = {
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
+
+      .children-box {
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #1e88e5; /* Blaues Highlight */
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .qrcode-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Abstand zwischen QR-Code und Foto */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  .qrcode-image {
+    width: 250px; /* Größerer QR-Code */
+    height: 250px;
+    object-fit: cover; /* Passt den QR-Code an, ohne Verzerrung */
+  }
+
+  .photo-image {
+    width: 250px; /* Größeres Foto */
+    height: 250px;
+    object-fit: cover; /* Verhindert Verzerrung */
+    border: 2px solid #ddd; /* Optional: Rahmen für das Foto */
+    border-radius: 8px; /* Abgerundete Ecken für das Foto */
+  }
+
+  .customer-number-box {
+    margin: 20px auto;
+    padding: 15px;
+    border: 2px solid #1e88e5; /* Blaue Umrandung */
+    background-color: #e3f2fd; /* Heller blauer Hintergrund */
+    border-radius: 8px;
+    text-align: center;
+    width: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e88e5; /* Blaue Schrift */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten */
+  }
+  .info-box-red {
+    background-color: #f8d7da; /* Heller roter Hintergrund */
+    color: #721c24; /* Dunkelrote Schrift */
+    border: 1px solid #f5c6cb; /* Passender roter Rand */
+  }
+
+  .info-box-red .number {
+    color: #d93025; /* Intensives Rot für die Nummer */
+  }
+
+  .info-box .additional-info {
+    margin-top: 10px; /* Abstand zur vorherigen Zeile */
+    padding: 15px; /* Innenabstand */
+    background-color: #e3f2fd; /* Heller blauer Hintergrund */
+    border: 2px solid #1e88e5; /* Blaue Umrandung */
+    border-radius: 8px; /* Abgerundete Ecken */
+    font-size: 14px; /* Standard-Schriftgröße */
+    color: #1e88e5; /* Blaue Schrift */
+    line-height: 1.6; /* Zeilenhöhe für bessere Lesbarkeit */
+    text-align: left; /* Links ausgerichtet */
+  }
+
+  .info-box .additional-info p {
+    margin: 5px 0; /* Abstand zwischen den Absätzen */
+  }
+
+  .info-box .details .status {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; /* Standardfarbe */
+    margin-bottom: 10px; /* Abstand nach unten */
+    text-align: left; /* Links ausgerichtet */
+  }
+
+  .info-box .additional-info strong {
+    color: #0d47a1; /* Dunkleres Blau für Hervorhebungen */
+  }
     </style>
   </head>
   <body>
     <!-- Header -->
     <div class="header-box">
-      Servicefiliale {user.servicefiliale}
+      <a href={"https://www.berliner-tafel.de/"} style="text-decoration: none; font-size: 18px; color: #0070f3;">
+      {user.servicefiliale}
     </div>
 
+    <!-- Kundennummer Feld -->
+<div class="customer-number-box">
+  Kundennummer: {user.kundennummer}
+</div>
+
+
     <!-- Content -->
-    <div class="content-container">
+    <div class="qrcode-container">
+      <!-- QR-Code -->
+      <img class="qrcode-image" src={qrcode.src} alt="QR Code" />
+    
+      <!-- Foto -->
+      <img class="photo-image" src={foto.src} alt="Foto" />
+    </div>
       <!-- Persönliche Angaben und Foto -->
       <div class="user-section">
         <div class="user-details">
-          <p><strong>Vorname:</strong> {user.vorname}</p>
-          <p><strong>Nachname:</strong> {user.nachname}</p>
-          <p><strong>Geburtsdatum:</strong> {user.geburtsdatum}</p>
-          <p><strong>Geburtsort:</strong> {user.geburtsort}</p>
-          <p><strong>Nationalität:</strong> {user.nationalitaet}</p>
-          <p><strong>Muttersprache:</strong> {user.muttersprache}</p>
-          <p><strong>Kinder:</strong> {user.kinder}</p>
-          <p><strong>Kundennummer:</strong> {user.kundennummer}</p>
-        </div>
+          <div class="children-box">
+            Anzahl der Kinder: {user.kinder}
+          </div>
 
-        <div class="photo-placeholder">
-          <p>Kundenfoto</p>
         </div>
       </div>
 
@@ -233,7 +337,7 @@ const user = {
       <h2>Warteschlange</h2>
 
       <!-- Info-Box -->
-      <div class="info-box">
+      <div class="info-box info-box-red">
         <div class="number">{user.warteschlange}</div>
         <div class="details">
           <div class="status">In Bearbeitung</div>
@@ -241,26 +345,13 @@ const user = {
         </div>
       </div>
 
-      <div class="my-info-box">
+      <div class="info-box">
         <div class="number">{user.kundennummer}</div>
         <div class="details">
-          <div class="status">Wartend</div>
           <div class="additional-info">
-            <!-- Kalender-Icon -->
-            <div class="calendar-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
-              </svg>
-            </div>
-            <!-- Servicezeit und Datum -->
-            <div class="date-content">
-              <p><strong>Servicezeit:</strong> {user.servicezeit}</p>
-              <p><strong>Datum:</strong> {user.datum}</p>
-            </div>
-          </div>
-          <!-- Anschrift separat -->
-          <div class="address">
-            <p><strong>Anschrift:</strong> {user.anschrift}</p>
+            <p><strong>Servicezeit ca.:</strong> {user.servicezeit}</p>
+            <p><strong>Datum:</strong> {user.datum}</p>
+            <p><strong>Straße und Ort:</strong> {user.anschrift}</p>
           </div>
         </div>
       </div>
