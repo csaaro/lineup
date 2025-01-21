@@ -14,8 +14,8 @@ export default defineConfig({
         includeAssets: ['favicon.svg'],
         registerType: 'autoUpdate',
         manifest: {
-          name: 'Astro PWA',
-          short_name: 'Astro PWA',
+          name: 'Warteschlange',
+          short_name: 'Warteschlange',
           theme_color: '#ffffff',
           icons: [
             {
