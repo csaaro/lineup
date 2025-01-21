@@ -26,7 +26,56 @@ import foto from '../assets/foto.png'
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+
+@media (max-width: 600px) {
+  /* Hier kommen alle mobilen Anpassungen rein */
+
+  .header-box,
+    .customer-number-box {
+      width: 100% /* Nutze die gesamte Breite minus Rand */
+      margin: 10px auto; /* Weniger Abstand für kleine Geräte */
+    }
+
+  .qrcode-container {
+        flex-direction: column; /* Elemente untereinander */
+        justify-content: center; /* Vertikal zentriert */
+        align-items: center; /* Horizontal zentriert */
+        gap: 20px; /* Geringerer Abstand */
+    }
+
+    .qrcode-image,
+    .photo-image {
+        width: 80%; /* Breite für kleinere Geräte flexibel */
+        max-width: 250px; /* Begrenzung der Maximalgröße */
+        height: auto; /* Beibehaltung des Seitenverhältnisses */
+    }
+
+  .user-section {
+      flex-direction: column; /* Elemente untereinander */
+      gap: 10px; /* Weniger Abstand */
+  }
+
+  .user-details {
+      width: 100%; /* Nutzt die gesamte Breite */
+  }
+
+  .photo-placeholder {
+      width: 100px;
+      height: 100px;
+  }
+
+  .info-box,
+  .my-info-box {
+      flex-direction: column; /* Inhalte stapeln */
+      align-items: flex-start; /* Links ausgerichtet */
+  }
+
+  .number {
+      font-size: 24px; /* Etwas kleinere Nummern */
+  }
+}
       body {
+        
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
@@ -225,6 +274,7 @@ import foto from '../assets/foto.png'
       }
       .qrcode-container {
     display: flex;
+    flex-direction: column; /* Elemente untereinander */
     justify-content: center;
     align-items: center;
     gap: 40px; /* Abstand zwischen QR-Code und Foto */
@@ -236,19 +286,15 @@ import foto from '../assets/foto.png'
     width: 100%;
   }
 
-  .qrcode-image {
-    width: 250px; /* Größerer QR-Code */
-    height: 250px;
-    object-fit: cover; /* Passt den QR-Code an, ohne Verzerrung */
-  }
-
-  .photo-image {
-    width: 250px; /* Größeres Foto */
-    height: 250px;
+  .qrcode-image,
+.photo-image {
+    width: 80%; /* Breite für kleinere Geräte flexibel */
+    max-width: 250px; /* Maximalgröße begrenzen */
+    height: auto; /* Seitenverhältnis beibehalten */
     object-fit: cover; /* Verhindert Verzerrung */
-    border: 2px solid #ddd; /* Optional: Rahmen für das Foto */
-    border-radius: 8px; /* Abgerundete Ecken für das Foto */
-  }
+    border: 2px solid #ddd; /* Optional: Rahmen */
+    border-radius: 8px; /* Abgerundete Ecken */
+}
 
   .customer-number-box {
     margin: 20px auto;
@@ -257,7 +303,8 @@ import foto from '../assets/foto.png'
     background-color: #e3f2fd; /* Heller blauer Hintergrund */
     border-radius: 8px;
     text-align: center;
-    width: 50%;
+    width: 100%;
+    max-width: 300px;
     font-size: 24px;
     font-weight: bold;
     color: #1e88e5; /* Blaue Schrift */
