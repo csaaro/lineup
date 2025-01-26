@@ -14,6 +14,7 @@ const user = {
   anschrift: 'Musterstraße 123, 12345 Musterstadt',
   servicefiliale: 'BERLINER TAFEL e.V.',
   lastUpdate: '09:51 Uhr',
+  isMuslim: true
 };
 import { Image } from 'astro:assets';
 import qrcode from '../assets/qrcode.png'
@@ -26,6 +27,20 @@ import foto from '../assets/foto.png'
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+
+
+
+@media (max-width: 600px) {
+  .qrcode-container {
+    flex-direction: column; /* Elemente untereinander */
+  }
+
+  .qrcode-image,
+  .photo-image {
+    width: 80%; /* Breite für kleinere Geräte flexibel */
+    max-width: 250px; /* Maximalgröße begrenzen */
+  }
+}
 
 @media (max-width: 600px) {
   /* Hier kommen alle mobilen Anpassungen rein */
@@ -273,27 +288,43 @@ import foto from '../assets/foto.png'
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
       .qrcode-container {
-    display: flex;
-    flex-direction: column; /* Elemente untereinander */
-    justify-content: center;
-    align-items: center;
-    gap: 40px; /* Abstand zwischen QR-Code und Foto */
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: row; /* Elemente nebeneinander */
+  justify-content: space-around; /* Platz gleichmäßig verteilen */
+  align-items: center; /* Zentrieren der Elemente */
+  gap: 20px; /* Abstand zwischen QR-Code und Foto */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  width: 100%;
+  max-width: 400px; /* Maximalgröße begrenzen */
+}
 
-  .qrcode-image,
+.qrcode-image,
 .photo-image {
-    width: 80%; /* Breite für kleinere Geräte flexibel */
-    max-width: 250px; /* Maximalgröße begrenzen */
-    height: auto; /* Seitenverhältnis beibehalten */
-    object-fit: cover; /* Verhindert Verzerrung */
-    border: 2px solid #ddd; /* Optional: Rahmen */
-    border-radius: 8px; /* Abgerundete Ecken */
+  width: 45%; /* Gleiche Breite für beide Bilder */
+  max-width: 150px; /* Begrenze die Größe */
+  height: auto; /* Seitenverhältnis beibehalten */
+  object-fit: cover; /* Verhindert Verzerrung */
+  border: 2px solid #ddd; /* Optional: Rahmen */
+  border-radius: 8px; /* Abgerundete Ecken */
+}
+
+.muslim-status-box {
+  margin: 20px auto;
+  padding: 15px;
+  border: 2px solid #4caf50; /* Grüne Umrandung */
+  background-color: #e8f5e9; /* Heller grüner Hintergrund */
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4caf50; /* Grüne Schrift */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten */
 }
 
   .customer-number-box {
@@ -359,6 +390,11 @@ import foto from '../assets/foto.png'
     <!-- Kundennummer Feld -->
 <div class="customer-number-box">
   Kundennummer: {user.kundennummer}
+</div>
+
+<!-- Muslim-Status mit eigener Klasse -->
+<div class="muslim-status-box">
+  {user.isMuslim ? "Moslem" : "Nicht Moslem"}
 </div>
 
 
