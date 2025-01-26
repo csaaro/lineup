@@ -220,25 +220,21 @@ import foto from '../assets/foto.png'
 
 /* Zusätzliche Informationen mit Kalender-Icon */
 .my-info-box .additional-info {
-  display: flex;
-  flex-direction: row; /* Icon und Textblock nebeneinander */
-  align-items: center; /* Oben ausrichten */
-  gap: 5px; /* Abstand zwischen Icon und Text */
-  width: 100%; /* Box nutzt die gesamte Breite */
+
+
+
+  margin-top: 5px; /* Reduzierter Abstand nach oben */
+  padding: 10px; /* Weniger Innenabstand */
+  background-color: #e3f2fd; /* Heller blauer Hintergrund */
+  border: 2px solid #1e88e5; /* Blaue Umrandung */
+  border-radius: 8px; /* Abgerundete Ecken */
+  font-size: 14px; /* Standard-Schriftgröße */
+  color: #1e88e5; /* Blaue Schrift */
+  line-height: 1.4; /* Geringere Zeilenhöhe */
+  text-align: left; /* Links ausgerichtet */
 }
 
-/* Kalender-Icon */
-.my-info-box .calendar-icon {
-  width: 30px; /* Angepasste Icon-Größe */
-  height: 30px;
-  flex-shrink: 0; /* Verhindert, dass das Icon schrumpft */
-}
 
-.my-info-box .calendar-icon svg {
-  width: 100%;
-  height: 100%;
-  fill: #1e88e5; /* Blaues Icon */
-}
 
 .my-info-box .date-content {
   display: flex;
@@ -250,7 +246,7 @@ import foto from '../assets/foto.png'
 
 
 .my-info-box .date-content p {
-  margin: 5px 0;
+  margin: 20px 0;
 }
 
 .my-info-box .address {
@@ -305,7 +301,7 @@ import foto from '../assets/foto.png'
 
 .info-row {
   display: flex;
-  justify-content: space-between; /* Abstand zwischen den Feldern */
+  justify-content: center; /* Zentriert die beiden Boxen */
   align-items: center; /* Vertikale Zentrierung */
   gap: 20px; /* Abstand zwischen den Boxen */
   margin: 20px auto; /* Zentriert und mit Abstand nach oben/unten */
@@ -351,8 +347,8 @@ import foto from '../assets/foto.png'
   }
 
   .info-box .additional-info {
-    margin-top: 10px; /* Abstand zur vorherigen Zeile */
-    padding: 15px; /* Innenabstand */
+    margin-top: 2.5px; /* Abstand zur vorherigen Zeile */
+    padding: 5px; /* Innenabstand */
     background-color: #e3f2fd; /* Heller blauer Hintergrund */
     border: 2px solid #1e88e5; /* Blaue Umrandung */
     border-radius: 8px; /* Abgerundete Ecken */
@@ -363,14 +359,14 @@ import foto from '../assets/foto.png'
   }
 
   .info-box .additional-info p {
-    margin: 5px 0; /* Abstand zwischen den Absätzen */
+    margin: 2px 0; /* Abstand zwischen den Absätzen */
   }
 
   .info-box .details .status {
     font-size: 16px;
     font-weight: bold;
     color: #333; /* Standardfarbe */
-    margin-bottom: 10px; /* Abstand nach unten */
+    margin-bottom: 5px; /* Abstand nach unten */
     text-align: left; /* Links ausgerichtet */
   }
 
