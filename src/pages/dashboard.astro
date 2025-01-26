@@ -277,16 +277,7 @@ import foto from '../assets/foto.png'
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
 
-      .children-box {
-        padding: 20px;
-        border-radius: 8px;
-        background-color: #1e88e5; /* Blaues Highlight */
-        color: white;
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
+
       .qrcode-container {
   display: flex;
   flex-direction: row; /* Elemente nebeneinander */
@@ -312,35 +303,43 @@ import foto from '../assets/foto.png'
   border-radius: 8px; /* Abgerundete Ecken */
 }
 
-.muslim-status-box {
-  margin: 20px auto;
-  padding: 15px;
-  border: 2px solid #4caf50; /* Grüne Umrandung */
-  background-color: #e8f5e9; /* Heller grüner Hintergrund */
-  border-radius: 8px;
-  text-align: center;
-  width: 100%;
-  max-width: 300px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #4caf50; /* Grüne Schrift */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten */
+.info-row {
+  display: flex;
+  justify-content: space-between; /* Abstand zwischen den Feldern */
+  align-items: center; /* Vertikale Zentrierung */
+  gap: 20px; /* Abstand zwischen den Boxen */
+  margin: 20px auto; /* Zentriert und mit Abstand nach oben/unten */
+  max-width: 500px; /* Maximalbreite des Containers */
 }
 
-  .customer-number-box {
-    margin: 20px auto;
-    padding: 15px;
-    border: 2px solid #1e88e5; /* Blaue Umrandung */
-    background-color: #e3f2fd; /* Heller blauer Hintergrund */
-    border-radius: 8px;
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1e88e5; /* Blaue Schrift */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten */
-  }
+.children-box,
+.muslim-status-box {
+  flex: 1; /* Gleiche Breite für beide Boxen */
+  padding: 10px;
+  border: 2px solid #1e88e5;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1e88e5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.customer-number-box {
+  margin: 20px auto;
+  padding: 10px; /* Weniger Innenabstand */
+  border: 2px solid #1e88e5; /* Blaue Umrandung */
+  background-color: #e3f2fd; /* Heller blauer Hintergrund */
+  border-radius: 8px;
+  text-align: center;
+  width: 80%; /* Schmalere Breite */
+  max-width: 200px; /* Reduzierte maximale Breite */
+  font-size: 18px; /* Kleinere Schrift */
+  font-weight: bold;
+  color: #1e88e5; /* Blaue Schrift */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten */
+}
   .info-box-red {
     background-color: #f8d7da; /* Heller roter Hintergrund */
     color: #721c24; /* Dunkelrote Schrift */
@@ -392,10 +391,16 @@ import foto from '../assets/foto.png'
   Kundennummer: {user.kundennummer}
 </div>
 
-<!-- Muslim-Status mit eigener Klasse -->
-<div class="muslim-status-box">
-  {user.isMuslim ? "Moslem" : "Nicht Moslem"}
+<!-- Anzahl Kinder und Moslem-Status nebeneinander -->
+<div class="info-row">
+  <div class="children-box">
+    Anzahl der Kinder: {user.kinder}
+  </div>
+  <div class="muslim-status-box">
+    Status: {user.isMuslim ? "Moslem" : "Nicht Moslem"}
+  </div>
 </div>
+
 
 
     <!-- Content -->
@@ -406,15 +411,7 @@ import foto from '../assets/foto.png'
       <!-- Foto -->
       <img class="photo-image" src={foto.src} alt="Foto" />
     </div>
-      <!-- Persönliche Angaben und Foto -->
-      <div class="user-section">
-        <div class="user-details">
-          <div class="children-box">
-            Anzahl der Kinder: {user.kinder}
-          </div>
 
-        </div>
-      </div>
 
       <!-- Überschrift für Info-Boxen -->
       <h2>Warteschlange</h2>
