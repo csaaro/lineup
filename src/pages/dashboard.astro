@@ -43,6 +43,20 @@ import foto from '../assets/foto.png'
 }
 
 @media (max-width: 600px) {
+  .advertisement-box {
+    width: 90%; /* Nutze 90% der Breite */
+    margin: 10px auto; /* Reduzierter Abstand */
+  }
+
+  .content-container,
+  .info-row,
+  .qrcode-container {
+    width: 100%; /* Nutzt die gesamte Breite */
+    margin: 0 auto; /* Zentriert den Container */
+  }
+}
+
+@media (max-width: 600px) {
   /* Hier kommen alle mobilen Anpassungen rein */
 
   .header-box,
@@ -89,13 +103,15 @@ import foto from '../assets/foto.png'
       font-size: 24px; /* Etwas kleinere Nummern */
   }
 }
-      body {
-        
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-      }
+body {
+  margin: 0; /* Entfernt unnötige äußere Abstände */
+  padding: 0; /* Entfernt unnötige Innenabstände */
+  box-sizing: border-box; /* Sorgt für korrekte Brechnung der Breite */
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  width: 100%; /* Stellt sicher, dass die Breite korrekt angepasst ist */
+  overflow-x: hidden; /* Verhindert horizontalen Bildlauf */
+}
 
       .header-box {
         margin: 20px auto;
@@ -247,23 +263,23 @@ import foto from '../assets/foto.png'
   text-align: left; /* Links ausgerichtet */
 }
 
-      .advertisement-box {
-        width: 100%;
-        max-width: 400px;
-        height: 120px;
-        margin: 20px auto;
-        border: 2px solid #000;
-        background-color: #ffeb3b;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        color: #000;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
+.advertisement-box {
+  width: 95%; /* Anpassung für kleinere Geräte */
+  max-width: 400px; /* Maximale Breite bleibt erhalten */
+  margin: 20px auto; /* Zentrierung mit reduziertem vertikalen Abstand */
+  height: 100px; /* Reduzierte Höhe */
+  border: 2px solid #000;
+  background-color: #ffeb3b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px; /* Reduzierte Schriftgröße */
+  font-weight: bold;
+  color: #000;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 
 
       .qrcode-container {
