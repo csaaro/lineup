@@ -29,6 +29,19 @@ import foto from '../assets/foto.png'
     <style>
 
 
+@media (max-width: 600px) {
+  .info-box,
+  .muslim-status-box,
+  .advertisement-box {
+    width: 95%; /* Nutze fast die gesamte Breite */
+    margin: 10px auto; /* Zentriert */
+  }
+
+  .info-row {
+    flex-direction: column; /* Boxen untereinander anordnen */
+    gap: 15px; /* Abstand zwischen den Boxen */
+  }
+}
 
 @media (max-width: 600px) {
   .qrcode-container {
